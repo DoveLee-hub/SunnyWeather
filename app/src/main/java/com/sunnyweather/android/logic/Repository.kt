@@ -12,15 +12,16 @@ object Repository {
     fun searchPlaces(query : String) = liveData(Dispatchers.IO) {
         val result = try{
             val placeResponse = SunnyWeatherNetwork.searchPlaces(query)
-            if(placeResponse.status == "ok"){
+            //SunnyWeatherNetwork.searchPlaces返回的是解析好Json的Call类型，其中包含status和places属性(详见PlaceResponse.kt)
+            if(placeResponse.status == "ok"){ //通过status的属性值判断请求属否成功
                 val places = placeResponse.places
-                Result.success(places);
+                Result.success(places)//将places打包进Result，通过Result的构造函数，将places赋值给Result中的泛型变量value
             }else{
                 Result.failure(RuntimeException("response status is ${placeResponse.status}"))
             }
         }catch (e :Exception){
             Result.failure<List<Place>>(e)
         }
-        emit(result)
+        emit(result) //发送出result
     }
 }

@@ -10,9 +10,10 @@ import kotlin.coroutines.resumeWithException
 import kotlin.coroutines.suspendCoroutine
 
 object SunnyWeatherNetwork {
-    private val placeService = ServiceCreator.create<PlaceService>();
+    private val placeService = ServiceCreator.create<PlaceService>()
 
-    suspend fun searchPlaces(query: String) = placeService.searchPlaces(query).await();
+    suspend fun searchPlaces(query: String) = placeService.searchPlaces(query).await()
+    //SunnyWeatherNetwork.searchPlaces返回的是解析好Json的Call类型，其中包含status和places属性(详见PlaceResponse.kt)
 
     private suspend fun <T> Call<T>.await() :T{
         return suspendCoroutine { continuation ->
