@@ -51,7 +51,7 @@ class PlaceFragment : Fragment() {
         //从而使得Observer中的lambda被执行
         //lambda中的result是Repository中searchPlaces中返回的livedata中的result，result中只包含了places(Places是一个collection类型)
         //（为什么是Repository中searchPlaces中返回的livedata？见PlaceViewModel中的注释）
-        viewModel.placeLiveData.observe(viewLifecycleOwner, Observer { result ->
+        viewModel.placeLiveData.observe(this, Observer { result ->
             val places = result.getOrNull()
             if(places != null){
                 recyclerView.visibility = View.VISIBLE
