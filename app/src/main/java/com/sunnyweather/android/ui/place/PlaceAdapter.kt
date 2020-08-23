@@ -19,12 +19,12 @@ class PlaceAdapter(private val fragment:Fragment,private val placeList: List<Pla
     }
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.place_item,parent,false)
-        return ViewHolder(view);
+        return ViewHolder(view)
     }
 
     override fun onBindViewHolder(holder: PlaceAdapter.ViewHolder, position: Int) {
-        val place = placeList[position];
-        holder.placeName.text = place.name;
+        val place = placeList[position]
+        holder.placeName.text = place.name
         holder.placeAddress.text = place.address
     }
 
